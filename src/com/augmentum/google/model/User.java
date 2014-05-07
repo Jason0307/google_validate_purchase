@@ -1,6 +1,8 @@
 package com.augmentum.google.model;
 
+import com.augmentum.google.exception.GoogleException;
 import com.augmentum.google.util.ConstantsUtil;
+import com.augmentum.google.util.ErrorCodeConstant;
 import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Model;
 /**
@@ -20,7 +22,10 @@ public class User extends Model<User>{
 	 */
 	public User findByRelevanceCode(String relevanceCode) {
 		User user = User.dao.findFirst("SELECT * FROM User WHERE relevanceCode = ? AND valid = ?",relevanceCode,ConstantsUtil.RELEVANCECODE_VALID);
-		return user;
+		if(null != user){
+			return user;
+		}
+		throw new GoogleException(ErrorCodeConstant.RELEVANCE_CODE_ERROR);
 	}
 	
 }

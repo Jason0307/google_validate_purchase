@@ -1,5 +1,6 @@
 package com.augmentum.google.config;
 
+import com.augmentum.google.handler.ExceptionHandler;
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
@@ -48,7 +49,7 @@ public class Config extends JFinalConfig{
 	 */
 	@Override
 	public void configInterceptor(Interceptors i) {
-		
+		i.add(new ExceptionHandler());
 	}
 
 	/*

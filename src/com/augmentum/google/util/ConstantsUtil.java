@@ -8,6 +8,7 @@ public class ConstantsUtil {
 	public static final int STATUS_ERROR = -1;
 	public static final int RELEVANCECODE_VALID = 0;
 	public static final int RELEVANCECODE_INVALID = 1;
+	public static final String GLOBAL_ERROR = "Some error occurs on the server.";
 	
 
 }
