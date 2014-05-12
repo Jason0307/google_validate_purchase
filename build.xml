@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="deploy" name="Barbarian - deploy" basedir=".">
+
+	<property environment="env" />
+	<property file="build.properties" />
+	<property name="src.dir" value="src">
+	</property>
+	<property name="basedir" value=".">
+	</property>
+	<property name="build.dir" value="build">
+	</property>
+	<property name="build.classes" value="${build.dir}/classes">
+	</property>
+	<property name="build.lib" value="${build.dir}/lib">
+	</property>
+	<property name="lib.dir" value="${basedir}/WebContent/WEB-INF/lib">
+	</property>
+	<property name="webinfo.dir" value="${basedir}/WebContent/WEB-INF">
+	</property>
+	<property name="webContent.dir" value="${basedir}/WebContent/">
+	</property>
+		<path id="compile-path">
+			<pathelement path="${java.home}/lib/tools.jar" />
+			<fileset dir="${lib.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+		</path>
+
+		<target name="init">
+			<delete dir="${build.dir}" failonerror="false">
+			</delete>
+			<mkdir dir="${build.dir}">
+			</mkdir>
+			<mkdir dir="${build.classes}" />
+			<mkdir dir="${build.lib}" />
+
+		</target>
+		<target name="copy" depends="init">
+			<copy todir="${build.lib}">
+				<fileset dir="${lib.dir}" includes="**/*.jar">
+				</fileset>
+			</copy>
+		</target>
+		<target name="compile-web" depends="copy">
+			<compile module="/" />
+		</target>
+
+		<macrodef name="compile">
+			<attribute name="module" />
+			<element name="options" optional="yes" />
+
+			<sequential>
+				<echo>Compiling @{module}...</echo>
+				<mkdir dir="${build.dir}/classes/@{module}" />
+				<javac srcdir="${src.dir}/@{module}" destdir="${build.dir}/classes/@{module}" debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}" includeAntRuntime="false" classpathref="compile-path">
+					<options />
+				</javac>
+				<echo>Done</echo>
+			</sequential>
+		</macrodef>
+
+		<target name="copy-resource" depends="compile-web">
+			<copy todir="${build.classes}" overwrite="${copy.overwrite}">
+				<fileset dir="${src.dir}">
+					<include name="**/*.xml" />
+					<include name="**/*.properties" />
+				</fileset>
+				<fileset dir="${webinfo.dir}">
+					<include name="**/*.properties" />
+				</fileset>
+			</copy>
+		</target>
+
+		<target name="deploy" depends="compile-web" description="Deploy web project">
+			<echo message="---->deploy project....">
+			</echo>
+			<mkdir dir="${tomcat.home}/${apps.dir}" />
+			<copy todir="${tomcat.home}/${apps.dir}">
+				<fileset dir="${webContent.dir}">
+				</fileset>
+			</copy>
+			<copy todir="${tomcat.home}/${apps.dir}/WEB-INF/classes">
+				<fileset dir="${src.dir}" includes="*.xml">
+				</fileset>
+				<fileset dir="${src.dir}" includes="*.properties">
+				</fileset>
+			</copy>
+		</target>
+		<target name="copy-jsp" description="copy resources">
+			<echo message="---->copy jsp file....">
+			</echo>
+			<mkdir dir="${tomcat.home}/${apps.dir}" />
+			<copy todir="${tomcat.home}/${apps.dir}">
+				<fileset dir="${webContent.dir}">
+				</fileset>
+			</copy>
+			<copy todir="${tomcat.home}/${apps.dir}/WEB-INF/classes">
+				<fileset dir="${dir.src}" includes="*.xml">
+				</fileset>
+				<fileset dir="${dir.src}" includes="*.properties">
+				</fileset>
+			</copy>
+		</target>
+	</project>

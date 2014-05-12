@@ -30,6 +30,15 @@ import com.jfinal.upload.UploadFile;
 @ControllerBind(controllerKey = "/google", viewPath = "/page/")
 public class GoogleController extends Controller {
 
+	
+	public void config() {
+		GoogleAccountInfo account = GoogleAccountInfo.dao.findByUnique();
+		String auth = getPara("auth");
+		setAttr("account", account);
+		setAttr("auth", auth);
+		render("config.jsp");
+	}
+	
 	public void auth() {
 
 		GoogleVo googleVo = PropertiesUtil.readFromPropertiesFile();
@@ -53,14 +62,6 @@ public class GoogleController extends Controller {
 				redirect(sb.toString());
 			}
 		}
-	}
-
-	public void config() {
-		GoogleAccountInfo account = GoogleAccountInfo.dao.findByUnique();
-		String auth = getPara("auth");
-		setAttr("account", account);
-		setAttr("auth", auth);
-		render("config.jsp");
 	}
 
 	public void saveAccount() throws Exception {

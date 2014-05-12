@@ -39,6 +39,7 @@ public class BaseTest<T extends Model<T>> {
 					properties.getProperty("password").toString());
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
+			return;
 		}
 		arp = new ActiveRecordPlugin(druidPlugin);
 		TableBind tableBind = modelClass.getAnnotation(TableBind.class);
