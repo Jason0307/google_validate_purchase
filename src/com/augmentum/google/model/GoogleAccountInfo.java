@@ -17,7 +17,7 @@ public class GoogleAccountInfo extends Model<GoogleAccountInfo> {
 
 	public GoogleAccountInfo findByUnique() {
 		List<GoogleAccountInfo> accounts = GoogleAccountInfo.dao
-				.find("SELECT * FROM GoogleAccountInfo limit 0,1");
+				.find("SELECT * FROM GoogleAccountInfo limit 0,1") ;
 		if (!accounts.isEmpty()) {
 			return accounts.get(0);
 		}

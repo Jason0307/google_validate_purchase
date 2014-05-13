@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<!DOCTYPE Models SYSTEM "../tools/Model.dtd" >
+<Models db="google_auth" package="com.augmentum.google.generate.model">
+<Model tableName="" name=""></Model>
+</Models>

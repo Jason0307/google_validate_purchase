@@ -5,17 +5,18 @@ import java.io.FileInputStream;
 import java.lang.reflect.ParameterizedType;
 import java.util.Properties;
 
+import junit.framework.TestCase;
+
 import org.apache.log4j.Logger;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 
 import com.jfinal.ext.plugin.tablebind.TableBind;
-import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.druid.DruidPlugin;
 
-public class BaseTest<T extends Model<T>> {
+public class BaseTest<T extends Model<T>> extends TestCase{
 	private DruidPlugin druidPlugin;
 	private ActiveRecordPlugin arp;
 	private Class<T> modelClass;
@@ -27,10 +28,10 @@ public class BaseTest<T extends Model<T>> {
 				.getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 
-	@Before
+	@BeforeClass
 	public void setUp() {
-		String jdbcConfig = PathKit.getWebRootPath()
-				+ "/WEB-INF/jdbc.properties";
+		String jdbcConfig = System.getProperty("user.dir")
+				+ "/WebContent/WEB-INF/jdbc.properties";
 		Properties properties = new Properties();
 		try {
 			properties.load(new FileInputStream(new File(jdbcConfig)));
@@ -45,13 +46,14 @@ public class BaseTest<T extends Model<T>> {
 		TableBind tableBind = modelClass.getAnnotation(TableBind.class);
 		String modelTable = tableBind.tableName();
 		String modelPk = tableBind.pkName();
+		System.out.println("modelTable : " + modelTable + " , modelPk : " + modelPk);
 		arp.addMapping(modelTable, modelPk, modelClass);
 		druidPlugin.start();
 		arp.start();
 
 	}
 
-	@After
+	@AfterClass
 	public void setDown() {
 		if (null != druidPlugin) {
 			druidPlugin.stop();
@@ -60,4 +62,5 @@ public class BaseTest<T extends Model<T>> {
 			arp.stop();
 		}
 	}
+	
 }

@@ -4,10 +4,12 @@
 package com.augmentum.google.util;
 
 /**
+ * 
  * @author Jason.Zhu
  * @email jasonzhu@augmentum.com.cn
- * @date 2014年4月30日 上午9:35:38
- */
+ * @date   May 13, 2014 11:51:30 AM
+ * @param <T>
+ *  */
 public class JsonResponse<T> {
 
 	private T response;

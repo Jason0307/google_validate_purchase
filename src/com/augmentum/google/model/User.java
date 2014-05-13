@@ -9,7 +9,7 @@ import com.jfinal.plugin.activerecord.Model;
  * 
  * @author Jason.Zhu
  * @email jasonzhu@augmentum.com.cn
- * @date   2014年4月30日
+ * @date   May 13, 2014 11:51:21 AM
  */
 @TableBind(tableName = "User",pkName = "userId")
 public class User extends Model<User>{
