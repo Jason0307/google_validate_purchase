@@ -15,6 +15,10 @@ import com.jfinal.ext.route.ControllerBind;
 @ControllerBind(controllerKey = "/admin",viewPath = "/page/common/")
 public class CommonController extends Controller{
 
+	public void index(){
+		render("index.jsp");
+	}
+	
 	public void login(){
 		render("login.jsp");
 	}
@@ -33,6 +37,6 @@ public class CommonController extends Controller{
 			return;
 		}
 		getSession().setAttribute("_ADMIN_USER", admin);
-		redirect("/admin/google/config");
+		redirect("/admin/index");
 	}
 }
