@@ -1,6 +1,8 @@
 package com.augmentum.google.config;
 
-import com.augmentum.google.handler.ExceptionHandler;
+import com.augmentum.google.generate.base.BaseModel;
+import com.augmentum.google.interceptor.ExceptionInterceptor;
+import com.augmentum.google.interceptor.GlobalInterceptor;
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
@@ -49,7 +51,8 @@ public class Config extends JFinalConfig{
 	 */
 	@Override
 	public void configInterceptor(Interceptors i) {
-		i.add(new ExceptionHandler());
+		i.add(new GlobalInterceptor());
+		i.add(new ExceptionInterceptor());
 	}
 
 	/*
@@ -67,6 +70,7 @@ public class Config extends JFinalConfig{
 		AutoTableBindPlugin autoTableBindPlugin = new AutoTableBindPlugin(
 				druidPlugin);
 		autoTableBindPlugin.setShowSql(true);
+		autoTableBindPlugin.addExcludeClass(BaseModel.class);
 		p.add(druidPlugin).add(autoTableBindPlugin);
 	//	QuartzPlugin quartzPlugin = new QuartzPlugin("job.properties");
 		p.add(new EhCachePlugin());//.add(quartzPlugin);

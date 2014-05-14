@@ -34,7 +34,7 @@
 					value="${account.clientSecret}" readonly="readonly" /> <label>Redirect
 					Url</label><input type="text" name="redirectUrl"
 					value="${account.redirectUrl}" readonly="readonly" /> <br /> <a
-					href="<%=request.getContextPath()%>/google/auth" class="auth">GO
+					href="<%=request.getContextPath()%>/admin/google/auth" class="auth">GO
 					AUTH</a>
 			</div>
 		</c:if>
@@ -62,7 +62,7 @@
 			$('#upload').uploadify({
 				'buttonText' : 'Add/Update Secret',
 				'swf'      : '<%=request.getContextPath()%>/swf/uploadify.swf',
-				'uploader' : '<%=request.getContextPath()%>/google/saveAccount',
+				'uploader' : '<%=request.getContextPath()%>/admin/google/saveAccount',
 				'onUploadSuccess' : function(file, data,response) {
 									window.location.reload();
 				}

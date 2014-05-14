@@ -46,7 +46,6 @@ public class BaseTest<T extends Model<T>> extends TestCase{
 		TableBind tableBind = modelClass.getAnnotation(TableBind.class);
 		String modelTable = tableBind.tableName();
 		String modelPk = tableBind.pkName();
-		System.out.println("modelTable : " + modelTable + " , modelPk : " + modelPk);
 		arp.addMapping(modelTable, modelPk, modelClass);
 		druidPlugin.start();
 		arp.start();

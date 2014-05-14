@@ -3,8 +3,6 @@
  */
 package com.augmentum.google.model;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 /**

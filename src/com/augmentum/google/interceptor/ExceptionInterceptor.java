@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.augmentum.google.handler;
+package com.augmentum.google.interceptor;
 
 import com.augmentum.google.exception.GoogleException;
 import com.augmentum.google.util.ConstantsUtil;
@@ -16,7 +16,7 @@ import com.jfinal.core.Controller;
  * @email jasonzhu@augmentum.com.cn
  * @date   May 7, 2014 2:26:05 PM
  */
-public class ExceptionHandler implements Interceptor{
+public class ExceptionInterceptor implements Interceptor{
 
 	/* (non-Javadoc)
 	 * @see com.jfinal.aop.Interceptor#intercept(com.jfinal.core.ActionInvocation)

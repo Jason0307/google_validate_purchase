@@ -103,11 +103,11 @@
 			<fileset dir="${src.dir}" includes="*.properties">
 			</fileset>
 		</copy>
-		<echo>Dist ${apps.dir} to ${tomcat.home}</echo>
+		<echo>Dist ${apps.dir} to ${tomcat.home} successfully!</echo>
 	</target>
 	
 	<target name="run-test" depends="compile-test">
-	  <echo>Run the junit test case</echo>
+	  <echo>Run the junit test report</echo>
 	  <junit printsummary="false" haltonfailure="false">
 	   <classpath refid="run-test-path"></classpath>
 	   <formatter type="brief" usefile="false"/>

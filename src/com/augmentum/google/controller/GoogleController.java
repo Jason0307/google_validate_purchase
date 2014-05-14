@@ -27,7 +27,7 @@ import com.jfinal.core.Controller;
 import com.jfinal.ext.route.ControllerBind;
 import com.jfinal.upload.UploadFile;
 
-@ControllerBind(controllerKey = "/google", viewPath = "/page/")
+@ControllerBind(controllerKey = "/admin/google", viewPath = "/page/")
 public class GoogleController extends Controller {
 
 	
