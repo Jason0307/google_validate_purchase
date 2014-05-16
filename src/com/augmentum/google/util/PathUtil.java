@@ -15,7 +15,7 @@ public class PathUtil {
 	public static String getSrcPath() throws Exception{
 		File directory = new File("");
 		String courseFile = directory.getCanonicalPath();
-		return courseFile;
+		return courseFile + "/src/";
 	}
 	
 }

@@ -121,5 +121,11 @@
 	   <report format="frames" todir="${build.test.report}/html"/>
 	  </junitreport>
 	 </target>
+	
+	<!-- <target name="build-models" depends="compile-web">
+	 	<echo>Start to build the models...</echo>
+	        <java classname="com.augmentum.google.util.GenerateBuilderUtil" classpathref="compile-test-path" fork="true" maxmemory="256m" newenvironment="true">
+	        </java>
+	 </target>-->
 	<ivy:retrieve file="ivy.xml" sync="true" /> 
 </project>

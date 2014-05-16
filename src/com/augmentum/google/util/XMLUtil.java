@@ -46,6 +46,8 @@ public class XMLUtil {
 				String modelTableName = modelElement
 						.attributeValue("tableName");
 				String modelPkName = null;
+				
+				//read the attrs of model
 				List<Element> attrElements = modelElement.elements("Attr");
 				List<Attr> attrs = new ArrayList<Attr>();
 				List<Finder> finders = new ArrayList<Finder>();
@@ -80,6 +82,7 @@ public class XMLUtil {
 					}
 				}
 				
+				//read the finders of model
 				List<Element> finderElements = modelElement.elements("Finder");
 				if(!finderElements.isEmpty()){
 					for(Element finderElement : finderElements){

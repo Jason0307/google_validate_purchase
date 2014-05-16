@@ -14,7 +14,6 @@ import org.bee.tl.core.GroupTemplate;
 import org.bee.tl.core.Template;
 
 import com.augmentum.google.generate.base.Model;
-import com.jfinal.kit.PathKit;
 
 /**
  * @author Jason.Zhu
@@ -25,7 +24,7 @@ public class GenerateBuilderUtil {
 
 	public static void main(String[] args) throws Exception {
 		GroupTemplate group = new GroupTemplate(new File(
-				PathKit.getWebRootPath() + "/WEB-INF/templateroot"));
+				System.getProperty("user.dir") + "/WebContent/WEB-INF/templateroot"));
 		Template template = group.getFileTemplate("/model.btl");
 		Template template2 = group.getFileTemplate("/model_impl.btl");
 		BuilderModel builderModel = XMLUtil.readModelsFromXML();
@@ -46,7 +45,7 @@ public class GenerateBuilderUtil {
 	 */
 	private static void genrateSqlFile(List<Model> models, String database)
 			throws Exception, IOException {
-		String sqlPath = PathUtil.getSrcPath() + "/sql";
+		String sqlPath = System.getProperty("user.dir") + "/sql";
 		File sqlDirectory = new File(sqlPath);
 		if (!sqlDirectory.exists()) {
 			sqlDirectory.mkdirs();
@@ -78,8 +77,7 @@ public class GenerateBuilderUtil {
 			for (Model model : models) {
 				template2.set("model", model);
 				String content = template2.getTextAsString();
-				System.out.println(content);
-				String filePath = PathUtil.getSrcPath() + "/src/"
+				String filePath = PathUtil.getSrcPath()
 						+ packageName.replace(".", "/");
 				File directory = new File(filePath);
 				if (!directory.exists()) {
@@ -114,8 +112,7 @@ public class GenerateBuilderUtil {
 			for (Model model : models) {
 				template.set("model", model);
 				String content = template.getTextAsString();
-				System.out.println(content);
-				String filePath = PathUtil.getSrcPath() + "/src/"
+				String filePath = PathUtil.getSrcPath()
 						+ packageName.replace(".", "/");
 				File directory = new File(filePath);
 				if (!directory.exists()) {

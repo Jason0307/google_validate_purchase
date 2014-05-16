@@ -1,8 +1,8 @@
 package com.augmentum.google.generate.model;
 
 public class ${model.name}Impl {
-    private static GameImpl instance = new GameImpl();
-	private GameImpl(){}    
+    private static ${model.name}Impl instance = new ${model.name}Impl();
+	private ${model.name}Impl(){}    
     <%for(finder in model.finders){
          var returnType = (0 == finder.returnType) ? model.name : ('java.util.List<'+ model.name + '>');
     %>
@@ -41,7 +41,7 @@ public class ${model.name}Impl {
     }
 	<%}%>
 	
-	public static GameImpl getDAO(){
+	public static ${model.name}Impl getDAO(){
 		return instance;
 	}
 }
